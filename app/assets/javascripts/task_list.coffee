@@ -98,7 +98,7 @@ incomplete = "[ ]"
 complete   = "[x]"
 
 annotationPattern = ///
-  \*.*\*$  # end of line italic annotation
+  \s\*.*\*$  # end of line italic annotation
 ///
 
 # Escapes the String for regular expression matching.
@@ -173,7 +173,7 @@ updateTaskListItem = (source, itemIndex, checked) ->
   index = 0
   stamp  = ""
   if checked
-    stamp = "*`--<userstamp>`*"
+    stamp = " *`--<annotation>`*"
 
   result = for line in source.split("\n")
     if line in clean && line.match(itemPattern)
@@ -188,7 +188,7 @@ updateTaskListItem = (source, itemIndex, checked) ->
           if line.match annotationPattern
             line.replace(annotationPattern, stamp)
           else
-            line + " " + stamp
+            line + stamp
     line
   result.join("\n")
 
