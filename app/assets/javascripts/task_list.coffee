@@ -14,7 +14,7 @@
 #   <div class="js-task-list-container">
 #     <ul class="task-list">
 #       <li class="task-list-item">
-#         <input type="checkbox" class="js-task-list-item-checkbox" disabled />
+#         <input type="checkbox" class="task-list-item-checkbox" disabled />
 #         text
 #       </li>
 #     </ul>
@@ -97,6 +97,10 @@
 incomplete = "[ ]"
 complete   = "[x]"
 
+annotationPattern = ///
+  \*.*\*$  # end of line italic annotation
+///
+
 # Escapes the String for regular expression matching.
 escapePattern = (str) ->
   str.
@@ -167,6 +171,10 @@ updateTaskListItem = (source, itemIndex, checked) ->
   clean = source.replace(/\r/g, '').replace(codeFencesPattern, '').
     replace(itemsInParasPattern, '').split("\n")
   index = 0
+  stamp  = ""
+  if checked
+    stamp = "*`--<userstamp>`*"
+
   result = for line in source.split("\n")
     if line in clean && line.match(itemPattern)
       index += 1
@@ -176,6 +184,11 @@ updateTaskListItem = (source, itemIndex, checked) ->
             line.replace(incompletePattern, complete)
           else
             line.replace(completePattern, incomplete)
+        line =
+          if line.match annotationPattern
+            line.replace(annotationPattern, stamp)
+          else
+            line + " " + stamp
     line
   result.join("\n")
 

@@ -2,6 +2,7 @@
 
 *NOTE:* _This repository is no longer supported or updated by GitHub. If you wish to continue to develop this code yourself, we recommend you fork it._</code>
 
+## Let's Make This Clear:  This is the VANBOOM FORK with amazing new and unsupported features.
 
 [![Gem Version](http://img.shields.io/gem/v/task_list.svg)][gem]
 [![Build Status](http://img.shields.io/travis/github/task_list.svg)][travis]
@@ -60,7 +61,7 @@ Rendered HTML (the `<ul>` element below) should be contained in a `js-task-list-
 <div class="js-task-list-container">
   <ul class="task-list">
     <li class="task-list-item">
-      <input type="checkbox" class="js-task-list-item-checkbox" disabled />
+      <input type="checkbox" class="task-list-item-checkbox" disabled />
       text
     </li>
   </ul>

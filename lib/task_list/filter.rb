@@ -113,7 +113,6 @@ class TaskList
     # Returns nothing.
     def filter!
       list_items.reverse.each do |li|
-        add_css_class(li.parent, 'task-list')
 
         outer, inner =
           if p = li.xpath(ItemParaSelector)[0]
@@ -125,7 +124,7 @@ class TaskList
           item = TaskList::Item.new(match, inner)
           # prepend because we're iterating in reverse
           task_list_items.unshift item
-
+          add_css_class(li.parent, 'task-list')
           add_css_class(li, 'task-list-item')
           outer.inner_html = render_task_list_item(item)
         end
