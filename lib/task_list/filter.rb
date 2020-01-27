@@ -54,7 +54,11 @@ class TaskList
 
     class XPathSelectorFunction
       def self.task_list_item(nodes)
-        nodes if nodes.text =~ ItemPattern
+        if nodes.text =~ ItemPattern
+          nodes
+	else
+          ""
+	end
       end
     end
 
